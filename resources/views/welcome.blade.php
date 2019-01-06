@@ -136,14 +136,27 @@
       <div class="row mx-auto">
         <div class="col-md-12">
           <h1 class="mb-3">Get More</h1>
-          <form class="form-inline w-100">
+
+          <form class="form-inline w-100" action="{{ Route('mailsubscribers') }}" method="post">
             <div class="input-group w-100 input-group-lg">
-              <input type="text" class="form-control" placeholder="Your e-mail">
-              <div class="input-group-append"><button class="btn btn-primary" type="button">Subscribe</button></div>
+              <input type="text" class="form-control" name="email" placeholder="Your e-mail">
+              {{ csrf_field() }}
+              <div class="input-group-append"><button type="submit" class="btn btn-primary" type="button">Subscribe</button></div>
             </div>
           </form>
           <p class="">List of Trending videos delivered, No ads, no spam</p>
+          @if (\Session::has('success'))
+              <div class="alert alert-success">
+                <p>{{ \Session::get('success') }}</p>
+              </div><br />
+            @endif
+            @if (\Session::has('failure'))
+               <div class="alert alert-danger">
+                 <p>{{ \Session::get('failure') }}</p>
+               </div><br />
+            @endif
         </div>
+          
       </div>
     </div>
   </div>
